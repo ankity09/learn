@@ -29,3 +29,9 @@ yum repolist
 echo adding the NTPSERVERARGS tag 
 
 echo "NTPSERVERARGS=ipburst" >> /etc/sysconfig/network
+
+echo "Disabling Transparent Huge Pages"
+
+echo never > /sys/kernel/mm/redhat_transparent_hugepage/enabled
+
+echo never > /sys/kernel/mm/redhat_transparent_hugepage/defrag
