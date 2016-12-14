@@ -21,6 +21,6 @@ yum repolist
 
 echo "disabling THP"
 echo never > /sys/kernel/mm/redhat_transparent_hugepage/enabled
-echo never > sys/kernel/mm/redhat_transparent_hugepage/defrag
+echo never > /sys/kernel/mm/redhat_transparent_hugepage/defrag
 
 
