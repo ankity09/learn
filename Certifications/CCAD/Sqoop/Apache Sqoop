@@ -99,8 +99,42 @@ sqoop import \
 --password cloudera \
 --target-dir /user/hive/warehouse/retail_ods.db/department \
 --append \
---fields-terminated-by '|' \
---lines-terminated-by 'n' \
 --split-by department_id \
 --where "department_id > 7" \
 --outdir java_files
+
+##### sqoop import into existing hive table #####
+
+sqoop import \
+--connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+--username retail_dba \
+--password cloudera \
+--table departments \
+--hive-home /user/hive/warehouse \
+--hive-import \
+--hive-overwrite \
+--hive-table departments
+
+##### sqoop import into new hive table #####
+
+sqoop import \
+--connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+--username retail_dba \
+--password cloudera \
+--table departments \
+--hive-home /user/hive/warehouse \
+--hive-import \
+--hive-table department_test \
+--create-hive-table
+
+##### sqoop import incremental load #####
+
+sqoop import \
+--connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+--username retail_dba \
+--password cloudera \
+--table departments \
+--target-dir /user/hive/warehouse/departments \
+--check-column "department_id" \
+--incremental append \
+--last-value 7
