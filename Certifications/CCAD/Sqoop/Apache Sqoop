@@ -138,3 +138,25 @@ sqoop import \
 --check-column "department_id" \
 --incremental append \
 --last-value 7
+
+##### sqoop export #####
+
+sqoop export \
+--connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+--username retail_db \
+--password cloudera \
+--table order_items_export \
+--export-dir /user/cloudera/sqoop_import/order_items \
+--batch 
+
+##### sqoop export using update or upsert mode #####
+
+sqoop export \
+--connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+--usernmae retail_dba \
+--password cloudera \
+--table departments \
+--export-dir /user/cloudera/sqoop_import/departments_export \
+--batch \
+--update-key department_id \
+--update-mode allowinsert
