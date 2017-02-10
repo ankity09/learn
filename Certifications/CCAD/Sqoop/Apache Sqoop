@@ -160,3 +160,25 @@ sqoop export \
 --batch \
 --update-key department_id \
 --update-mode allowinsert
+
+##### sqoop import using enclosed by #####
+
+sqoop import \
+--connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+--username retail_dba \
+--password cloudera \
+--table departments \
+--target-dir /user/cloudera/enclosedby/ \
+--enclosed-by \"
+
+##### sqoop import with delimiters #####
+
+sqoop import \
+--connect "jdbc:mysql://quickstart.cloudera:3306/retail_db" \
+--username retail_dba \
+--password cloudera \
+--table departments \
+--target-dir /user/cloudera/enclosedby \
+--enclosed-by \" \
+--fields-terminated-by \| \
+--lines-terminated-by \: 
