@@ -182,3 +182,20 @@ sqoop import \
 --enclosed-by \" \
 --fields-terminated-by \| \
 --lines-terminated-by \: 
+
+##### sqoop export with delimiters #####
+
+sqoop export \
+--connect "jdbc:mysql://quickstart.cloudera:3306/retil_db" \
+--username retail_dba \
+--password cloudera \
+--table departments_test \
+--export-dir /user/hive/warehouse/departments_test \
+--input-fields-terminated-by '\001' \
+--input-lines-terminated-by '\n' \
+--num-mappers 2 \
+--batch \
+--outdir java_files \
+--input-null-string nvl \
+--input-null-non-string -1
+
