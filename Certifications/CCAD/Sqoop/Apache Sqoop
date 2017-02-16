@@ -1,5 +1,7 @@
 Apache Sqoop
 
+https://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html
+
 ##### sqoop list-databases #####
 
 sqoop list-databases \
@@ -47,6 +49,9 @@ sqoop import-all-tables \
 --outdir java_files
 
 ##### import-all-tables in hive specific database #####
+####
+Database should be present 
+####
 
 sqoop import-all-tables \
 -m 1 \
@@ -66,7 +71,7 @@ sqoop import \
 --username retail_dba \
 --password cloudera \
 --table departments \
---as-textfile
+--as-textfile \
 --target-dir /user/cloudera/departments
 
 ##### sqoop import boundary query #####
