@@ -1,0 +1,86 @@
+ Apache Flume
+
+ #example.conf: A single node Flume Configuration
+
+ # Name the components on this agent
+ a1.sources = r1
+ a1.sinks = k1
+ a1.channels = c1
+
+ # Describe/configure the source
+ a1.sources.r1.type = netcat
+ a1.sources.r1.bind = localhost
+ a1.sources.r1.port = 44444
+
+ # Describe the sink
+ a1.sinks.k1.type = logger
+
+ # Use a channel which buffers events in memory
+ a1.channels.c1.type = memory
+ a1.channels.c1.capacity = 1000
+ a1.channels.c1.transactionCapacity = 100
+
+ # Bind the source and sink to the channel
+a1.sources.r1.channels = c1
+a1.sinks.k1.channel = c1 
+
+bin/flume-ng agent --conf conf --conf-file example.conf --name a1 -Dflume.root.logger=INFO
+
+
+#Ingest into HDFS
+
+#Name the components on this agent
+hdfs.sources = l1
+hdfs.sinks = h1
+hdfs.channels = c1
+
+#Describe/configure the source
+hdfs.sources.l1.type = netcat
+hdfs.sources.l1.bind = localhost
+hdfs.sources.l1.port = 44444
+
+#Describe the sink
+hdfs.sinks.h1.type = hdfs
+
+#Use a channel which buffers events in memory
+hdfs.channels.c1.type = memory
+hdfs.channels.c1.capacity = 1000
+hdfs.channels.c1.transactionCapacity = 100
+
+#Customizing sink for hdfs
+hdfs.sinks.h1.hdfs.path = /user/cloudera/flume
+hdfs.sinks.h1.hdfs.filePrefix = netcat
+
+#Bind the source and sink to the channel
+hdfs.sources.l1.channels = c1
+hdfs.sinks.h1.channel = c1
+
+#Ingest into HDFS in Datastream file type
+
+#Name the components on this agent
+hdfs.source = l1
+hdfs.sinks = h1
+hdfs.channels = c1
+
+#Describe/configure the source
+hdfs.sources.l1.type = netcat
+hdfs.sources.l1.bind = localhost
+hdfs.sources.l1.port = 44444
+
+#Describe the sink
+hdfs.sinks.h1.type = hdfs
+
+#Use a channel which buffers events in memory
+hdfs.channels.c1.type = memory
+hdfs.channels.c1.capacity = 1000
+hdfs.channels.c1.transactionCapacity = 100
+
+#Customizing sink for hdfs
+hdfs.sinks.h1.hdfs.path = /user/local/flume
+hdfs.sinks.h1.hdfs.filePrefix = netcat
+hdfs.sinks.h1.hdfs.fileType = DataStream
+hdfs.sinks.h1.hdfs.rollInterval = 20
+
+#Bind source and sink to channel
+hdfs.sources.l1.channels = c1
+hdfs.sinks.h1.channel = c1
