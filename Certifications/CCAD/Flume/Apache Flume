@@ -84,3 +84,45 @@ hdfs.sinks.h1.hdfs.rollInterval = 20
 #Bind source and sink to channel
 hdfs.sources.l1.channels = c1
 hdfs.sinks.h1.channel = c1
+
+# Ingest NRT Data into HDFS
+
+# Name the components on this agent
+a1.sources = r1
+a1.sinks = k1
+a1.channels = c1
+
+# Describe/configure the source
+a1.sources.r1.type = exec
+a1.sources.r1.command = tail -F /opt/gen_logs/logs/access.log
+a1.sources.r1.channels = c1
+
+# Use a channel which buffers events into a file
+a1.channels.c1.type = FILE
+
+#The maximum size of transaction supported by the channel
+a1.channels.c1.capacity  = 20000
+a1.channels.c1.transactionCapacity = 1000
+
+# Amount of time (in millis) between checkpoints
+a1.channels.c1.checkpointInterval 300000
+
+# Describe the sink
+
+a1.sinks.k1.type = hdfs
+
+# Customizing sink for hdfs
+a1.sinks.k1.type = hdfs
+a1.sinks.k1.channel  = c1
+a1.sinks.k1.hdfs.path = /user/cloudera/flume/%y-%m-%d
+a1.sinks.k1.hdfs.filePrefix = flume-%y-%m-%d
+a1.sinks.k1.hdfs.rollSize = 1048576
+a1.sinks.k1.hdfs.rollCount = 100
+a1.sinks.k1.hdfs.rollInterval = 120
+a1.sinks.k1.hdfs.fileType = DataStream
+a1.sinks.k1.hdfs.idleTimeout = 10
+a1.sinks.k1.hdfs.useLocalTimeStamp = true
+
+# Bind the source and sink to the channel
+a1.sources.r1.channels = c1
+a1.sinks.k1.channel = c1
