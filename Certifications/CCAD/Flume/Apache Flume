@@ -126,3 +126,7 @@ a1.sinks.k1.hdfs.useLocalTimeStamp = true
 # Bind the source and sink to the channel
 a1.sources.r1.channels = c1
 a1.sinks.k1.channel = c1
+
+# Command to start and stop logs in Quickstart VM
+start_logs
+stop_logs
