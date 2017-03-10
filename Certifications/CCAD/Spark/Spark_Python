@@ -1,0 +1,2 @@
+ sqlContext.sql("select * from departments").count()
+ sqlContext.sql("select * from departments").collect().foreach(println)
