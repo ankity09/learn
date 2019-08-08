@@ -6,3 +6,12 @@
     1)	 Windows configures MySQL Installer
 
     ![Image1](https://github.com/ankity09/learn/blob/master/Alumni_Database/images/image1.png)
+    
+    2)	 Welcome Screen: A welcome screen provides several options. Choose the first option: Install MySQL Products
+    
+    ![Image2](https://github.com/ankity09/learn/blob/master/Alumni_Database/images/image2.png)
+    
+    3) Download the latest MySQL products: MySQL installer checks and downloads the latest MySQL products including MySQL server, MySQL Workbench, etc.
+    
+    ![Image3](https://github.com/ankity09/learn/blob/master/Alumni_Database/images/image3.png)
+    
