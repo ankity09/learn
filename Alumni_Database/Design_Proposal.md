@@ -107,6 +107,8 @@ R13: A job cannot be deleted from the database, if the alumnus works that job.
 
 R14: If a job information is changed in the database, the corresponding alumnus working that job information should be changed accordingly.
 
+## 9. Referential Integrity
+
 | Relation | Foreign Key | Base Relation | Primary Key | Constraint: ON DELETE | Business Rule | Constraint: ON UPDATE | Business Rule |
 |---|---|---|---|---|---|---|---|
 | Alumnus | contactId | ContactDetails | contactId | SET NULL | R1 | CASCADE | R2 |
